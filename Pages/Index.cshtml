@@ -8,3 +8,17 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+@foreach (var f in Model.Users)
+{
+    <tr>
+        @if (f.IconImage != null)
+        {
+            var encodedImage = String.Format("data:image/jpg;base64, {0}", Convert.ToBase64String(f.IconImage));
+            <td><img src="@encodedImage" style="height: 64px" /></td>
+        }
+        else
+        {
+            <td>:-((</td>
+        }
+    </tr>
+}

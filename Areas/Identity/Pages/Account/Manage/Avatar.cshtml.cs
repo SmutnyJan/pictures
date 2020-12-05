@@ -48,8 +48,7 @@ namespace myPictures.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var userId = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-            var user = _userManager.Users.Where(c => c.Id == userId).FirstOrDefault();
+            BetterUser user = await _userManager.GetUserAsync(User);
             if (Upload.ContentType.StartsWith("image"))
             {
                 MemoryStream ims = new MemoryStream();
